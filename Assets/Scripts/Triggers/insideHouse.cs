@@ -2,13 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
 using UnityEngine;
-using UnityEngine.Rendering;
+
 
 public class insideHouse : MonoBehaviour
 {
-    [SerializeField] AudioSource musicSound;
-    float minVolume = 0.1f;
-    float maxVolume = 1f;
+    [SerializeField] private AudioSource musicSound;
+    private float minVolume = 0.1f;
+    private float maxVolume = .8f;
 
 
 
@@ -30,18 +30,15 @@ public class insideHouse : MonoBehaviour
     {
         if (canDownAudio)
         {
-
             DownVolume();
 
-         
         }
 
-        if (canDownAudio)
+        if (canUpAudio)
         {
-            if(musicSound.volume != 1)
-            {
-                UpVolume();
-            }
+
+            UpVolume();
+
         }
 
 
@@ -51,17 +48,20 @@ public class insideHouse : MonoBehaviour
 
     void DownVolume()
     {
-        timer += Time.deltaTime;
 
         if (musicSound.volume > minVolume)
         {
+            timer += Time.deltaTime;
+            Debug.Log(timer);
 
-            if (timer > 3f)
+            if (timer >= 3f)
             {
                 musicSound.volume -= 0.1f;
-                //Debug.Log("volume" + musicSound.volume);
                 timer = 0f;
+
+                //Debug.Log("volume" + musicSound.volume);
             }
+
         }
         else
         {
@@ -71,16 +71,16 @@ public class insideHouse : MonoBehaviour
 
     void UpVolume()
     {
-        timer += Time.deltaTime;
-
         if (musicSound.volume < maxVolume)
         {
+            timer += Time.deltaTime;
 
-            if (timer > 3f)
+            if (timer >= 3f)
             {
                 musicSound.volume += 0.1f;
-                    //Debug.Log("volume" + musicSound.volume);
                 timer = 0f;
+
+                
             }
         }
         else
@@ -91,9 +91,9 @@ public class insideHouse : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Player"))
+        if (other.gameObject.TryGetComponent(out Player player))
         {
-            Player player = other.gameObject.GetComponent<Player>();
+            Debug.Log("este we tiene el player");
             if (inside)
             {
                 player.currentLocation = Location.insideHouse;
