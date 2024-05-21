@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c601e96988f1df4884e3f135cca7c49, type: 3}
+  m_Name: Closet
+  m_EditorClassIdentifier: 
+  objectName: Closet
+  isOpen: 0
+  key: 0
+  openSound: {fileID: 8300000, guid: a0a320edd5296ea4ca0205cf38b4a7fb, type: 3}
+  closeSound: {fileID: 0}

@@ -6,7 +6,9 @@ using UnityEngine;
 
 public class insideHouse : MonoBehaviour
 {
+    
     [SerializeField] private AudioSource musicSound;
+
     private float minVolume = 0.1f;
     private float maxVolume = .8f;
 
@@ -19,6 +21,9 @@ public class insideHouse : MonoBehaviour
     bool canDownAudio;
     bool canUpAudio;
     float timer;
+
+
+    
     private void Start()
     {
         timer = 0f;
@@ -88,7 +93,7 @@ public class insideHouse : MonoBehaviour
             canUpAudio = false;
         }
     }
-
+/*
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.TryGetComponent(out Player player))
@@ -100,6 +105,7 @@ public class insideHouse : MonoBehaviour
 
                 canDownAudio = true;
                 canUpAudio = false;
+               
             }
             if (outside)
             {
@@ -113,7 +119,7 @@ public class insideHouse : MonoBehaviour
         }
 
     }
-
+*/
 
 
 

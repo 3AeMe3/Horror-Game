@@ -4,11 +4,8 @@ using UnityEngine;
 
 public class Key : MonoBehaviour
 {
+    public ItemsSO keyItem;
 
-    [SerializeField] Transform player;
-    //public bool hasKey;
-
-    
     private void Start()
     {
         gameObject.SetActive(false);
@@ -16,15 +13,22 @@ public class Key : MonoBehaviour
 
     private void Update()
     {
-     
+
     }
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerStay(Collider other)
     {
-        
+
         if (other.TryGetComponent<Player>(out Player player))
         {
-            player.haveKey = true;
-           
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+
+                gameObject.SetActive(false);
+                player.haveKey = true;
+            }
+
         }
+
     }
+  
 }

@@ -16,10 +16,10 @@ public class VirtualInput : MonoBehaviour
         StarterAssetsInputs.LookInput(virtualLookDirection);
     }
 
-  /*  public void VirtualJumpInput(bool virtualJumpState)
-    {
-        StarterAssetsInputs.JumpInput(virtualJumpState);
-    }*/
+    /*  public void VirtualJumpInput(bool virtualJumpState)
+      {
+          StarterAssetsInputs.JumpInput(virtualJumpState);
+      }*/
 
     public void VirtualSprintInput(bool virtualSprintState)
     {
