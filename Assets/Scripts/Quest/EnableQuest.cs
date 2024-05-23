@@ -9,6 +9,8 @@ public  class EnableQuest : MonoBehaviour
     [SerializeField]public string QuestComplete = "";
 
     [SerializeField] GameObject Key;
+
+    [SerializeField] private GameObject introCamera;
     private void OnTriggerStay(Collider other)
     {
         if (other.gameObject.CompareTag("Player"))
@@ -24,6 +26,8 @@ public  class EnableQuest : MonoBehaviour
                     if (!Key.activeSelf)
                     {
                         Key.SetActive(true);
+                        introCamera.SetActive(false);   
+
                     }
                 }
                

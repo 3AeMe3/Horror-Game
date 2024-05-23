@@ -22,7 +22,7 @@ public class Key : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.E))
             {
-
+                
                 gameObject.SetActive(false);
                 player.haveKey = true;
             }

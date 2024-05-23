@@ -28,6 +28,9 @@ public class GameManager : MonoBehaviour
     public GameObject ui_Quest;
     public GameObject ui_Menu;
 
+
+ 
+    [SerializeField] private GameObject cinematicObject;
     private void Awake()
     {
         if (instance == null)
@@ -50,17 +53,19 @@ public class GameManager : MonoBehaviour
     }
     public void StartGame()
     {
-        currentState = StatesGame.inGame;
-        cinematic.Play();
         
+        cinematic.Play();
+     
+
+        currentState = StatesGame.inGame;
 
         //cinemachine.Priority = 0;
     }
 
     private void Update()
     {
+        
 
-       
         switch (currentState)
         {
             case StatesGame.none:

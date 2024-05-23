@@ -1,3 +1,4 @@
+using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,7 +11,7 @@ public class Ghoul : MonoBehaviour
     [SerializeField] private Transform playerPosition;
     private NavMeshAgent navMeshAgent;
     [SerializeField] private SkinnedMeshRenderer skinnedMeshRenderer;
-    private Animation enemyAnimation;
+    private Animator animator;
   
 
     bool canAttack;
@@ -18,18 +19,19 @@ public class Ghoul : MonoBehaviour
     [SerializeField] private float distanceForAttack = 1.5f;
 
 
-    [SerializeField] private PlayableDirector killAnimation; 
+    [SerializeField] private PlayableDirector killAnimation;
+    [SerializeField] private CinemachineVirtualCamera deathCamera;
     private void Awake()
     {
         navMeshAgent = GetComponent<NavMeshAgent>();
-        enemyAnimation = GetComponent<Animation>();
+        animator = GetComponent<Animator>();
         
     }
 
 
     private void Start()
     {
-        //animator.Play();
+        
 
 
     }
@@ -38,19 +40,20 @@ public class Ghoul : MonoBehaviour
         if (!canAttack)
         {
 
-            if (IsVisible())
-            {
-                navMeshAgent.isStopped = true;
-               // enemyAnimation.Stop();
-            }
-            else
-            {
-                navMeshAgent.isStopped = false;
-                //enemyAnimation.Play("Run");
-                MoveTowards();
+            /* if (IsVisible())
+             {
+                 navMeshAgent.isStopped = true;
+                enemyAnimation.Stop();
+             }
+             else
+             {
 
-            }
 
+
+             }*/
+            navMeshAgent.isStopped = false;
+            animator.Play("Walk");
+            MoveTowards();
         }
    
 
@@ -70,6 +73,7 @@ public class Ghoul : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
            
+       
             canAttack = true;
             killAnimation.Play();
 
