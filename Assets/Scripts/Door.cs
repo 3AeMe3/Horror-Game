@@ -10,8 +10,10 @@ public class Door : MonoBehaviour
 
     private const string openDoor = "OpenDoor";
 
-    //bool activateDoor ;
+    bool haveKey;
     public bool needKey;
+
+    //public bool cantOpen = false;
     bool openDoorEnabled;
     private void Start()
     {
@@ -24,9 +26,11 @@ public class Door : MonoBehaviour
     {
         if (other.gameObject.TryGetComponent(out Player player))
         {
-           
 
-            if (!needKey)
+
+            if (player.haveKey) needKey = false; 
+
+            if (!needKey )
             {
                 if (Input.GetKeyDown(KeyCode.E) && !openDoorEnabled)
                 {

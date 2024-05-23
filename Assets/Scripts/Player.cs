@@ -10,7 +10,7 @@ public class Player : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        
+       
 
     }
 

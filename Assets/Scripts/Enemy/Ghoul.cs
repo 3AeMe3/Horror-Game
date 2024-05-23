@@ -1,36 +1,51 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
-using UnityEngine.UIElements;
+
 
 public class Ghoul : MonoBehaviour
 {
     [SerializeField] private Transform playerPosition;
     private NavMeshAgent navMeshAgent;
-    [SerializeField]private SkinnedMeshRenderer skinnedMeshRenderer;
+    [SerializeField] private SkinnedMeshRenderer skinnedMeshRenderer;
+    private Animation enemyAnimation;
 
+    bool canAttack;
+
+    [SerializeField] private float distanceForAttack = 1.5f;
     private void Awake()
     {
         navMeshAgent = GetComponent<NavMeshAgent>();
+        enemyAnimation = GetComponent<Animation>();
     }
 
+
+    private void Start()
+    {
+
+
+    }
     private void Update()
     {
-        if (IsVisible())
+        if (!canAttack)
         {
-            navMeshAgent.isStopped = true;
+
+            if (IsVisible())
+            {
+                navMeshAgent.isStopped = true;
+                enemyAnimation.Stop();
+            }
+            else
+            {
+                navMeshAgent.isStopped = false;
+                enemyAnimation.Play("Run");
+                MoveTowards();
+
+            }
+
         }
-        else
-        {
-            navMeshAgent.isStopped = false;
-
-            MoveTowards();
-
-        }
-
-
+        //DistanceToPlayer();
 
     }
 
@@ -43,4 +58,23 @@ public class Ghoul : MonoBehaviour
     {
         navMeshAgent.SetDestination(playerPosition.position);
     }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Player"))
+        {
+           
+            canAttack = true;
+            //animacion De Muerte
+
+        }
+    }
+    /*  private void DistanceToPlayer()
+      {
+          float distance = Vector3.Distance(transform.position ,playerPosition.position);
+
+          if (distance < distanceForAttack)
+          {
+              Debug.Log("perdiste");
+          }
+      }*/
 }
