@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Playables;
 
 
 public class Ghoul : MonoBehaviour
@@ -10,19 +11,25 @@ public class Ghoul : MonoBehaviour
     private NavMeshAgent navMeshAgent;
     [SerializeField] private SkinnedMeshRenderer skinnedMeshRenderer;
     private Animation enemyAnimation;
+  
 
     bool canAttack;
 
     [SerializeField] private float distanceForAttack = 1.5f;
+
+
+    [SerializeField] private PlayableDirector killAnimation; 
     private void Awake()
     {
         navMeshAgent = GetComponent<NavMeshAgent>();
         enemyAnimation = GetComponent<Animation>();
+        
     }
 
 
     private void Start()
     {
+        //animator.Play();
 
 
     }
@@ -34,18 +41,18 @@ public class Ghoul : MonoBehaviour
             if (IsVisible())
             {
                 navMeshAgent.isStopped = true;
-                enemyAnimation.Stop();
+               // enemyAnimation.Stop();
             }
             else
             {
                 navMeshAgent.isStopped = false;
-                enemyAnimation.Play("Run");
+                //enemyAnimation.Play("Run");
                 MoveTowards();
 
             }
 
         }
-        //DistanceToPlayer();
+   
 
     }
 
@@ -64,17 +71,9 @@ public class Ghoul : MonoBehaviour
         {
            
             canAttack = true;
-            //animacion De Muerte
+            killAnimation.Play();
 
         }
     }
-    /*  private void DistanceToPlayer()
-      {
-          float distance = Vector3.Distance(transform.position ,playerPosition.position);
 
-          if (distance < distanceForAttack)
-          {
-              Debug.Log("perdiste");
-          }
-      }*/
 }
