@@ -9,18 +9,20 @@ public class insideHouse : MonoBehaviour
     
     [SerializeField] private AudioSource musicSound;
 
-    private float minVolume = 0.1f;
-    private float maxVolume = .8f;
+    [Header("Parametros Sonido")]
+   [SerializeField]private float minVolume = 0.1f;
+    [SerializeField] private float maxVolume = .8f;
 
 
 
-
+    [Header("Booleans")]
     public bool inside;
     public bool outside;
+    private bool canDownAudio;
+    private bool canUpAudio;
 
-    bool canDownAudio;
-    bool canUpAudio;
-    float timer;
+
+    private float timer;
 
 
     
@@ -45,8 +47,6 @@ public class insideHouse : MonoBehaviour
             UpVolume();
 
         }
-
-
     }
 
 
@@ -64,7 +64,7 @@ public class insideHouse : MonoBehaviour
                 musicSound.volume -= 0.1f;
                 timer = 0f;
 
-                //Debug.Log("volume" + musicSound.volume);
+  
             }
 
         }
@@ -93,34 +93,4 @@ public class insideHouse : MonoBehaviour
             canUpAudio = false;
         }
     }
-/*
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.TryGetComponent(out Player player))
-        {
-            Debug.Log("este we tiene el player");
-            if (inside)
-            {
-                player.currentLocation = Location.insideHouse;
-
-                canDownAudio = true;
-                canUpAudio = false;
-               
-            }
-            if (outside)
-            {
-                player.currentLocation = Location.outsideHouse;
-                canUpAudio = true;
-                canDownAudio = false;
-
-
-            }
-
-        }
-
-    }
-*/
-
-
-
 }

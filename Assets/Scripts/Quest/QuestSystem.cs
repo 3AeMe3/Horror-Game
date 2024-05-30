@@ -26,7 +26,7 @@ public class QuestSystem : MonoBehaviour
         }
     }
 
-    // Método para activar misión
+    // Método para activar las misiones
     public void ActivateQuest(string questNumber)
     {
         Quest quest = GetQuestByNumber(questNumber);
@@ -43,7 +43,7 @@ public class QuestSystem : MonoBehaviour
         }
     }
 
-    // Método para completar misión
+    // Método para completar las misiones
     public void CompleteQuest(string questNumber)
     {
         Quest quest = GetQuestByNumber(questNumber);
@@ -59,7 +59,7 @@ public class QuestSystem : MonoBehaviour
         }
     }
 
-    // Método para obtener una misión por número
+    // Método para obtener la mision por numero (string)
     private Quest GetQuestByNumber(string questNumber)
     {
         foreach (Quest quest in quests)

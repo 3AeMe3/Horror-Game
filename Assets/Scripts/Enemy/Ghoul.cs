@@ -8,6 +8,7 @@ using UnityEngine.Playables;
 
 public class Ghoul : MonoBehaviour
 {
+    [Header("NavMesh")]
     [SerializeField] private Transform playerPosition;
     private NavMeshAgent navMeshAgent;
     [SerializeField] private SkinnedMeshRenderer skinnedMeshRenderer;
@@ -42,8 +43,7 @@ public class Ghoul : MonoBehaviour
 
             /* if (IsVisible())
              {
-                 navMeshAgent.isStopped = true;
-                enemyAnimation.Stop();
+                 StopIfVisible();
              }
              else
              {
@@ -51,6 +51,8 @@ public class Ghoul : MonoBehaviour
 
 
              }*/
+          
+            
             navMeshAgent.isStopped = false;
             animator.Play("Walk");
             MoveTowards();
@@ -62,6 +64,15 @@ public class Ghoul : MonoBehaviour
     private bool IsVisible()
     {
         return skinnedMeshRenderer.isVisible;
+    }
+
+    /// <summary>
+    /// Si el player mira al enemigo este se detiene
+    /// </summary>
+    private void StopIfVisible()
+    {
+        navMeshAgent.isStopped = true;
+        animator.speed = 0f;
     }
 
     private void MoveTowards()
